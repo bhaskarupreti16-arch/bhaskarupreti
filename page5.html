@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versace Quiz - Question 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: #ffffff;
+            font-family: 'Cormorant Garamond', serif;
+            color: #001a72;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- HEADER --- */
+        header {
+            margin-top: 10vh;
+            margin-bottom: 5vh;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-size: 4.5rem;
+            letter-spacing: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* --- QUESTION & ANSWERS (Layout Same as Page 4) --- */
+        main {
+            width: 80%;
+            max-width: 800px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vercially center the question/options */
+        }
+
+        .question-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            line-height: 1.3;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .option-item {
+            display: block;
+            border: 3px solid #001a72;
+            padding: 15px 25px;
+            color: #001a72;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .option-item:hover {
+            background-color: #f1f3ff;
+        }
+
+        /* --- SELECTED HIGHLIGHT --- */
+        .option-item.selected {
+            background-color: #001a72 !important;
+            color: #ffffff !important;
+            pointer-events: none;
+        }
+
+        /* --- FOOTER NAVIGATION --- */
+        footer {
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5vh;
+            margin-top: 5vh;
+            position: relative;
+        }
+
+        .nav-link {
+            font-family: 'Montserrat', sans-serif;
+            border: 3px solid #001a72;
+            padding: 10px 45px;
+            text-decoration: none;
+            color: #001a72;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #001a72;
+            color: #ffffff;
+        }
+
+        .medusa-box {
+            width: 140px;
+        }
+
+        .medusa-box img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-name">VERSACE</div>
+    </header>
+
+    <main>
+        <h2 class="question-title">II. What's your ideal outfit?</h2>
+        
+        <div class="options-list">
+            <div class="option-item" onclick="selectOption(this)">A. Something trendy, bold, maybe a little daring</div>
+            <div class="option-item" onclick="selectOption(this)">B. Minimal, neutral colors, clean lines</div>
+            <div class="option-item" onclick="selectOption(this)">C. Bright colors or pastels with a playful vibe</div>
+            <div class="option-item" onclick="selectOption(this)">D. Comfy jeans and a simple T-shirt</div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="page4.html" class="nav-link">PREVIOUS</a>
+
+        <div class="medusa-box">
+            <img src="logo.png" alt="Medusa Logo">
+        </div>
+
+        <a href="page6.html" class="nav-link">NEXT</a>
+    </footer>
+
+    <script>
+        function selectOption(clickedElement) {
+            const options = document.querySelectorAll('.option-item');
+            options.forEach(opt => opt.classList.remove('selected'));
+            clickedElement.classList.add('selected');
+        }
+    </script>
+
+</body>
+</html>
