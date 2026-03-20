@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Versace Quiz - Question 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; font-family: 'Cormorant Garamond', serif; color: #001a72; display: flex; flex-direction: column; align-items: center; }
+        header { margin-top: 10vh; font-size: 4.5rem; letter-spacing: 1rem; font-weight: 600; }
+        main { width: 80%; max-width: 800px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; height: 60vh; }
+        .option-item { border: 3px solid #001a72; padding: 15px 25px; margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .option-item.selected { background-color: #001a72; color: #ffffff; }
+        footer { width: 90%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 5vh; }
+        .nav-link { font-family: 'Montserrat', sans-serif; border: 3px solid #001a72; padding: 10px 45px; text-decoration: none; color: #001a72; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>VERSACE</header>
+    <main>
+        <h2 style="font-size: 2.2rem; margin-bottom: 3rem;">III. HOW WOULD YOU DESCRIBE YOUR 
+PERSONALITY IN ONE WORD?</h2>
+        <div class="option-item" onclick="selectOption(this, 'A')">A. Charismatic</div>
+        <div class="option-item" onclick="selectOption(this, 'B')">B. Elegant</div>
+        <div class="option-item" onclick="selectOption(this, 'C')">C. You come across as friendly and approachable</div>
+        <div class="option-item" onclick="selectOption(this, 'D')">D. No one bothers you - you just want to feel comfortable</div>
+    </main>
+    <footer>
+        <a href="page5.html" class="nav-link">PREVIOUS</a>
+        <img src="logo.png" alt="Medusa" style="width:120px;">
+        <a href="page7.html" class="nav-link">NEXT</a>
+    </footer>
+    <script>
+    function selectOption(el, letter) {
+        document.querySelectorAll('.option-item').forEach(opt => opt.classList.remove('selected'));
+        el.classList.add('selected');
+        localStorage.setItem('q3', letter);
+    }
+</script>
+</body>
+</html>
