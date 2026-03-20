@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Versace - Your Results</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #ffffff; /* Pure White Background */
+            background-color: #ffffff;
             font-family: 'Cormorant Garamond', serif;
             color: #001a72;
             display: flex;
@@ -35,7 +37,6 @@
             margin-bottom: 4rem;
         }
 
-        /* --- THE 4 QUESTIONS LIST --- */
         .quiz-summary {
             width: 100%;
             max-width: 700px;
@@ -62,7 +63,6 @@
             line-height: 1.6;
         }
 
-        /* --- THE RESULTS BAR --- */
         .results-footer {
             width: 100%;
             max-width: 1100px;
@@ -72,18 +72,17 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding-bottom: 5vh;
+            padding-bottom: 3rem;
         }
 
         .result-item {
             flex: 1;
             text-align: center;
             padding: 0 15px;
-            opacity: 0.15; /* Faded by default */
+            opacity: 0.15;
             transition: all 0.6s ease;
         }
 
-        /* HIGHLIGHT LOGIC */
         .result-item.highlight {
             opacity: 1;
             transform: scale(1.05);
@@ -105,26 +104,43 @@
             font-weight: 600;
         }
 
-        .v-line {
-            width: 2px;
-            background-color: #001a72;
-            height: 80px;
-            margin-top: 10px;
+        /* PRINT BUTTON */
+        .print-btn {
+            margin-top: 2rem;
+            padding: 12px 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border: 2px solid #001a72;
+            background: transparent;
+            color: #001a72;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        .restart {
-            margin-top: 2rem;
-            font-family: 'Montserrat', sans-serif;
-            text-decoration: none;
-            color: #001a72;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            border-bottom: 2px solid #001a72;
-            text-transform: uppercase;
-            font-weight: 700;
+        .print-btn:hover {
+            background: #001a72;
+            color: #fff;
+        }
+
+        /* PRINT STYLING */
+        @media print {
+            .print-btn {
+                display: none;
+            }
+
+            body {
+                padding: 20px;
+            }
+
+            .results-footer {
+                border-top: none;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="brand-name">VERSACE</div>
@@ -136,6 +152,7 @@
     </div>
 
     <div class="quiz-summary">
+
         <div class="question-block">
             <p class="q-title">I. When you walk into a room, what do you want to happen?</p>
             <ul class="ans-list">
@@ -175,44 +192,68 @@
                 <li>D. A peaceful cabin in the mountains</li>
             </ul>
         </div>
+
     </div>
 
     <div class="brand-name" style="font-size: 1.5rem; margin-bottom: 1rem;">RESULTS</div>
+
     <div class="results-footer">
         <div id="col-A" class="result-item">
             <div class="res-cat">MOSTLY A</div>
-            <div>BOLD / OVERSIZED FRAMES</div>
+            <div class="res-val">BOLD / OVERSIZED FRAMES</div>
         </div>
+
         <div id="col-B" class="result-item">
             <div class="res-cat">MOSTLY B</div>
-            <div>CAT-EYE OR MINIMAL METAL FRAMES</div>
+            <div class="res-val">CAT-EYE OR MINIMAL METAL FRAMES</div>
         </div>
+
         <div id="col-C" class="result-item">
             <div class="res-cat">MOSTLY C</div>
-            <div>COLORFUL OR TRANSPARENT FRAMES</div>
+            <div class="res-val">COLORFUL OR TRANSPARENT FRAMES</div>
         </div>
+
         <div id="col-D" class="result-item">
             <div class="res-cat">MOSTLY D</div>
-            <div>SPORTY OR COMFORT-FIT FRAMES</div>
+            <div class="res-val">SPORTY OR COMFORT-FIT FRAMES</div>
         </div>
     </div>
 
+    <!-- PRINT BUTTON AT BOTTOM -->
+    <button class="print-btn" onclick="printResult()">PRINT RESULT</button>
+
     <script>
         window.onload = function() {
-            const answers = [localStorage.getItem('q1'), localStorage.getItem('q2'), localStorage.getItem('q3'), localStorage.getItem('q4')];
+            const answers = [
+                localStorage.getItem('q1'),
+                localStorage.getItem('q2'),
+                localStorage.getItem('q3'),
+                localStorage.getItem('q4')
+            ];
+
             const counts = { A: 0, B: 0, C: 0, D: 0 };
-            answers.forEach(val => { if(val) counts[val]++; });
+
+            answers.forEach(val => {
+                if (val) counts[val]++;
+            });
 
             let winner = 'A';
             let maxCount = -1;
+
             for (const letter in counts) {
                 if (counts[letter] > maxCount) {
                     maxCount = counts[letter];
                     winner = letter;
                 }
             }
+
             document.getElementById('col-' + winner).classList.add('highlight');
         };
+
+        function printResult() {
+            window.print();
+        }
     </script>
+
 </body>
 </html>
