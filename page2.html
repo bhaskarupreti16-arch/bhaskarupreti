@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versace - Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #ffffff; font-family: 'Cormorant Garamond', serif; color: #001a72; display: flex; flex-direction: column; align-items: center; padding: 5vh 10%; }
+        .brand-header { font-size: 3.5rem; letter-spacing: 0.7rem; margin-bottom: 5vh; text-transform: uppercase; }
+        form { width: 100%; max-width: 600px; }
+        .input-group { margin-bottom: 1.5rem; border-bottom: 2px solid #001a72; }
+        label { display: block; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; }
+        input { width: 100%; border: none; outline: none; padding: 5px 0; font-size: 1.1rem; background: transparent; color: #001a72; }
+        .btn-container { display: flex; justify-content: center; margin-top: 3rem; }
+        .confirm-btn { background: none; border: 3px solid #001a72; padding: 12px 60px; color: #001a72; font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .confirm-btn:hover { background-color: #001a72; color: #fff; }
+        .confirm-btn:disabled { border-color: #ccc; color: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="brand-header">VERSACE</div>
+
+    <form id="registrationForm">
+        <div class="input-group">
+            <label>First Name</label>
+            <input type="text" name="First Name" required>
+        </div>
+        <div class="input-group">
+            <label>Last Name</label>
+            <input type="text" name="Last Name" required>
+        </div>
+        <div class="input-group">
+            <label>Date of Birth</label>
+            <input type="text" name="Date of Birth" placeholder="DD/MM/YYYY">
+        </div>
+        <div class="input-group">
+            <label>Country</label>
+            <input type="text" name="Country">
+        </div>
+        <div class="input-group">
+            <label>Cel-Phone</label>
+            <input type="tel" name="Cel-Phone">
+        </div>
+        <div class="input-group">
+            <label>E-Mail</label>
+            <input type="email" name="E-Mail" required>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="confirm-btn">CONFIRM</button>
+        </div>
+    </form>
+
+    <script>
+        // 1. PASTE YOUR URL FROM GOOGLE DEPLOYMENT HERE
+        const scriptURL = 'YOUR_APPS_SCRIPT_URL_HERE'; 
+        const form = document.getElementById('registrationForm');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const btn = form.querySelector('.confirm-btn');
+            btn.disabled = true;
+            btn.innerText = "SAVING...";
+
+            // Send data to Google Sheets
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    console.log('Success!', response);
+                    // Move to page 3 immediately after success
+                    window.location.href = "page3.html";
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    // Even if there is an error (like a bad URL), let the user move to Page 3
+                    window.location.href = "page3.html";
+                });
+        });
+    </script>
+</body>
+</html>
